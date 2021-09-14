@@ -96,15 +96,17 @@ public class App {
                         App.clearConsole();
                         System.out.printf("%n[INFO] REGISTER FOR A COURSE%n%n");
 
-                        String courseName = this.readLine("%n[QUES] Enter the course name for which you want to register: ").toUpperCase();
+                        String courseName = this
+                                .readLine("%n[QUES] Enter the course name for which you want to register: ")
+                                .toUpperCase();
                         String courseNumber = this
                                 .readLine("%n[QUES] Enter the course number for which you want to register: ");
                         int sectionNumber;
 
                         while (true) {
                             try {
-                                sectionNumber = Integer
-                                        .parseInt(this.readLine("%n[QUES] Enter the section number of the course offering: "));
+                                sectionNumber = Integer.parseInt(
+                                        this.readLine("%n[QUES] Enter the section number of the course offering: "));
                                 break;
                             }
 
