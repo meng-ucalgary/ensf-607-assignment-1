@@ -116,7 +116,7 @@ public class CourseCatalog {
         StringBuilder sb = new StringBuilder();
 
         for (Course c : courseList) {
-            sb.append(String.format("%s%n", c.toStringCourseAndOffering()));
+            sb.append(String.format("%s%n", c.toStringDetailed()));
         }
 
         return sb.toString();
