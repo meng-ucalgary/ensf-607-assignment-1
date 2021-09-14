@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 public class App {
     BufferedReader br;
     CourseCatalog cat;
+    Student stu;
 
     private App() {
         AnsiConsole.systemInstall();
@@ -43,6 +44,25 @@ public class App {
         }
     }
 
+    public void getStudent() {
+        System.out.printf("%n[INFO] LOGIN%n%n");
+        String studentName = this.readLine("%n[QUES] Enter student name: ");
+        int studentId;
+
+        while (true) {
+            try {
+                studentId = Integer.parseInt(this.readLine("%n[QUES] Enter student ID number: "));
+                break;
+            }
+
+            catch (NumberFormatException e) {
+                System.err.printf("%n[FAIL] Please enter a valid numeric ID%n");
+            }
+        }
+
+        this.stu = new Student(studentName, studentId);
+    }
+
     /**
      * Console based menu
      */
@@ -54,10 +74,10 @@ public class App {
             App.clearConsole();
 
             System.out.printf("%nCourse Registration System");
-            System.out.printf("%n%n[1] Search catalogue courses");
+            System.out.printf("%n%n[1] Search catalog courses");
             System.out.printf("%n%n[2] Add course to student courses");
             System.out.printf("%n%n[3] Remove course from student courses");
-            System.out.printf("%n%n[4] View All courses in catalogue");
+            System.out.printf("%n%n[4] View all courses in catalog");
             System.out.printf("%n%n[5] View all courses taken by student");
             System.out.printf("%n%n[6] Exit");
 
@@ -67,33 +87,58 @@ public class App {
                 switch (choice) {
 
                     case 1: {
-                        System.out.printf("Searching for course in the catalog");
+                        System.out.printf("%n[INFO] SEARCH THE COURSE CATALOG%n%n");
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;
 
                     case 2: {
-                        System.out.printf("Adding course");
+                        App.clearConsole();
+                        System.out.printf("%n[INFO] REGISTER FOR A COURSE%n%n");
+
+                        String courseName = this.readLine("%n[QUES] Enter the course name for which you want to register: ").toUpperCase();
+                        String courseNumber = this
+                                .readLine("%n[QUES] Enter the course number for which you want to register: ");
+                        int sectionNumber;
+
+                        while (true) {
+                            try {
+                                sectionNumber = Integer
+                                        .parseInt(this.readLine("%n[QUES] Enter the section number of the course offering: "));
+                                break;
+                            }
+
+                            catch (NumberFormatException e) {
+                                System.err.printf("%n[FAIL] Please enter a valid section number%n");
+                            }
+                        }
+
+                        if (this.stu.registerForCourse(this.cat, courseName, courseNumber, sectionNumber) == false) {
+                            System.out.printf("%n[FAIL] Sorry could not register for the course");
+                        }
+
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;
 
                     case 3: {
-                        System.out.printf("Remove course");
+                        System.out.printf("%n[INFO] DE-REGISTER FROM A COURSE%n%n");
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;
 
                     case 4: {
                         App.clearConsole();
-                        System.out.printf("%nYou are viewing all the courses in the catalog%n%n");
+                        System.out.printf("%nALL COURSES IN THE CATALOG%n%n");
                         cat.listCourses();
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;
 
                     case 5: {
-                        System.out.printf("View all courses by the Student");
+                        App.clearConsole();
+                        System.out.printf("%n[INFO] ALL REGISTERED COURSES BY STUDENT%n%n");
+                        System.out.println(stu.printRegisteredCourses());
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;
@@ -123,9 +168,7 @@ public class App {
 
     public static void main(String[] args) {
         App app = new App();
+        app.getStudent();
         app.appMenu();
-
-        // Student s1 = new Student("Amy", 30144835);
-        // Student s2 = new Student("Jackson", 30144837);
     }
 }

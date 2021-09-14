@@ -102,7 +102,7 @@ public class CourseCatalog {
     }
 
     public Course searchCatalog(String courseName, String courseNumber) {
-        for (Course c : courseList) {
+        for (Course c : this.courseList) {
             if (c.equals(new Course(courseName, courseNumber))) {
                 return c;
             }

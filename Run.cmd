@@ -6,3 +6,6 @@ javac -cp ".;lib/*" -sourcepath "src" -d "bin" src/registrationSystem/*.java
 
 @REM RUN THE JAVA CLASS FILE
 java -cp ".;lib/*;bin" registrationSystem.App
+
+pause
+exit /b

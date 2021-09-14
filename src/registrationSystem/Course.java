@@ -65,6 +65,16 @@ public class Course {
         return false;
     }
 
+    public Offering searchOffering(int sectionNumber) {
+        for(Offering o : this.getOfferingList()) {
+            if(o.getSectionNumber() == sectionNumber) {
+                return o;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Returns a String containing course name-number, its pre-requisites, and its offerings
      *
