@@ -66,44 +66,33 @@ public class Course {
     }
 
     /**
-     * Returns a String containing course name-number, and all its pre-requisites
+     * Returns a String containing course name-number, its pre-requisites, and its offerings
      *
-     * @return String containing course name-number, and all its pre-requisites
+     * @return String containing course name-number, its pre-requisites, and its offerings
      */
-    public String toStringCourseAndPreReq() {
+    public String toStringDetailed() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(String.format("%s-%s", this.getCourseName(), this.getCourseNumber()));
+        sb.append(this.toString());
 
         if (preReq.size() == 0) {
+            sb.append("  PreRequisite(s): None");
         }
 
         else {
-            sb.append("    preReq: ");
+            sb.append("  PreRequisite(s): ");
 
             for (Course preReqCourse : preReq) {
                 sb.append(preReqCourse + " ");
             }
         }
 
-        return sb.toString();
-    }
-
-    /**
-     * Returns a String containing course name-number, and all its offerings
-     *
-     * @return String containing course name-number, and all its offerings
-     */
-    public String toStringCourseAndOffering() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(String.format("%s-%s", this.getCourseName(), this.getCourseNumber()));
-
         if (offeringList.size() == 0) {
+            sb.append(String.format("%n%n          Not offered%n"));
         }
 
         else {
-            sb.append(String.format("    %s:%n", "Offerings"));
+            sb.append(String.format("%n%n          Offerings:%n"));
 
             for (Offering offering : offeringList) {
                 sb.append(String.format("            Section: %d, Capacity: %d%n", offering.getSectionNumber(),
