@@ -41,4 +41,8 @@ public class Offering {
     public void addRegistration(Registration reg) {
         this.studentList.add(reg);
     }
+
+    public void removeRegistration(Registration reg) {
+        this.studentList.remove(reg);
+    }
 }

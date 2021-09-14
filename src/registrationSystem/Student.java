@@ -110,8 +110,61 @@ public class Student {
         return flag;
     }
 
+    public boolean deRegisterFromCourse(CourseCatalog cat, String courseName, String courseNumber) {
+        boolean flag = false;
+        Registration toBeDeRegistered = null;
+        Course myCourse = cat.searchCatalog(courseName, courseNumber);
+
+        // invalid course
+        if (myCourse == null) {
+            System.err.printf("%n[FAIL] The selected course does not exist.");
+            return false;
+        }
+
+        // check if course is actually registered
+        boolean registrationCheck = false;
+
+        for (Registration registeredCourses : this.courseList) {
+            if (registeredCourses.getTheOffering().getTheCourse().equals(myCourse)) {
+                toBeDeRegistered = registeredCourses;
+                registrationCheck = true;
+                break;
+            }
+        }
+
+        if (registrationCheck == false) {
+            System.err.printf("%n[FAIL] You are currently not registered for this course.");
+            return false;
+        }
+
+        // check if the course has pre-requisite dependency on other registered courses
+        for (Registration registeredCourse : this.courseList) {
+            for (Course c : registeredCourse.getTheOffering().getTheCourse().getPreReq()) {
+                if (myCourse.equals(c)) {
+                    System.err.printf(
+                            "%n[FAIL] This course is listed as a pre-requisite for some of the registered courses.");
+                    System.err.printf("%n[FAIL] Please de-register from them before de-registering for this course.");
+
+                    return false;
+                }
+            }
+        }
+
+        // now de-register from the course
+        this.removeRegistration(toBeDeRegistered);
+        toBeDeRegistered.getTheOffering().removeRegistration(toBeDeRegistered);
+        System.out.printf("%n[DONE] Successfully de-registered for the course %s.", myCourse);
+        flag = true;
+
+        return flag;
+    }
+
     public void addRegistration(Registration reg) {
         this.courseList.add(reg);
+    }
+
+    public void removeRegistration(Registration reg) {
+        this.courseList.remove(reg);
     }
 
     public String printRegisteredCourses() {

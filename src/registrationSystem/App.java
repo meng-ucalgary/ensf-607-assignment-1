@@ -87,6 +87,7 @@ public class App {
                 switch (choice) {
 
                     case 1: {
+                        App.clearConsole();
                         System.out.printf("%n[INFO] SEARCH THE COURSE CATALOG%n%n");
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
@@ -124,7 +125,19 @@ public class App {
                         break;
 
                     case 3: {
+                        App.clearConsole();
                         System.out.printf("%n[INFO] DE-REGISTER FROM A COURSE%n%n");
+
+                        String courseName = this
+                                .readLine("%n[QUES] Enter the course name from which you want to de-register: ")
+                                .toUpperCase();
+                        String courseNumber = this
+                                .readLine("%n[QUES] Enter the course number from which you want to de-register: ");
+
+                        if (this.stu.deRegisterFromCourse(this.cat, courseName, courseNumber) == false) {
+                            System.out.printf("%n[FAIL] Sorry could not de-register from the course");
+                        }
+
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;
