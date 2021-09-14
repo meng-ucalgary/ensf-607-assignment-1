@@ -31,10 +31,6 @@ public class Registration {
         return grade;
     }
 
-    // public void setGrade(char grade) {
-    //     this.grade = grade;
-    // }
-
     private void addRegistration() {
         theStudent.addRegistration(this);
         theOffering.addRegistration(this);
