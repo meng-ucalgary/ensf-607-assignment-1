@@ -153,7 +153,7 @@ public class Student {
         // now de-register from the course
         this.removeRegistration(toBeDeRegistered);
         toBeDeRegistered.getTheOffering().removeRegistration(toBeDeRegistered);
-        System.out.printf("%n[DONE] Successfully de-registered for the course %s.", myCourse);
+        System.out.printf("%n[DONE] Successfully de-registered from the course %s.", myCourse);
         flag = true;
 
         return flag;
