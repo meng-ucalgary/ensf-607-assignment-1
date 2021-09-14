@@ -40,7 +40,7 @@ public class CourseCatalog {
                 ArrayList<Course> preReqList = new ArrayList<>();
 
                 // add the pre-requisite courses to the pre-requisite list
-                for(int i=1; i<courses.length; i++) {
+                for (int i = 1; i < courses.length; i++) {
                     preReqList.add(new Course(courses[i].split("-")[0].trim(), courses[i].split("-")[1].trim()));
                 }
 
@@ -54,8 +54,10 @@ public class CourseCatalog {
                     String[] offering = offeringStr.split(",");
 
                     // check if offering line read matches the current course line read
-                    if(theCourse.equals(new Course(offering[0].split("-")[0].trim(), offering[0].split("-")[1].trim()))) {
-                        Offering theOffering = new Offering(Integer.parseInt(offering[1].trim()), Integer.parseInt(offering[2].trim()));
+                    if (theCourse
+                            .equals(new Course(offering[0].split("-")[0].trim(), offering[0].split("-")[1].trim()))) {
+                        Offering theOffering = new Offering(Integer.parseInt(offering[1].trim()),
+                                Integer.parseInt(offering[2].trim()));
                         theOffering.setTheCourse(theCourse);
 
                         offeringList.add(theOffering);
@@ -76,8 +78,6 @@ public class CourseCatalog {
 
                 // add the course (along with its pre-requisite) to the catalog
                 allCourses.add(theCourse);
-
-                // System.out.printf("%s Section-%d Capacity-%d%n", theCourse, offeringList.get(0).getSectionNumber(), offeringList.get(0).getSectionCapacity());
             }
 
             catalogFile.close();
