@@ -57,8 +57,8 @@ public class Course {
     public boolean equals(Object obj) {
         Course compareCourse = (Course) obj;
 
-        if (compareCourse.getCourseName() == this.getCourseName()
-                && compareCourse.getCourseNumber() == this.getCourseNumber()) {
+        if (compareCourse.getCourseName().equals(this.getCourseName())
+                && compareCourse.getCourseNumber().equals(this.getCourseNumber())) {
             return true;
         }
 
@@ -97,13 +97,13 @@ public class Course {
     public String toStringCourseAndOffering() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(String.format("%s-%s%n%n", this.getCourseName(), this.getCourseNumber()));
+        sb.append(String.format("%s-%s", this.getCourseName(), this.getCourseNumber()));
 
         if (offeringList.size() == 0) {
         }
 
         else {
-            sb.append(String.format("%s:%n", "Offerings"));
+            sb.append(String.format("    %s:%n", "Offerings"));
 
             for (Offering offering : offeringList) {
                 sb.append(String.format("Section: %d, Capacity: %d%n", offering.getSectionNumber(),
