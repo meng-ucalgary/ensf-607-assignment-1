@@ -88,11 +88,11 @@ public class Course {
         }
 
         if (offeringList.size() == 0) {
-            sb.append(String.format("%n%n          Not offered%n"));
+            sb.append(String.format("%n          Not offered%n"));
         }
 
         else {
-            sb.append(String.format("%n%n          Offerings:%n"));
+            sb.append(String.format("%n          Offerings:%n"));
 
             for (Offering offering : offeringList) {
                 sb.append(String.format("            Section: %d, Capacity: %d%n", offering.getSectionNumber(),
