@@ -27,7 +27,7 @@ public class App {
     }
 
     /**
-     * Helper function to read from stdin after displaying the prompt
+     * Helper method to read from stdin after displaying the prompt
      *
      * @param prompt the prompt to print to stdout
      * @return String input by user
@@ -44,14 +44,17 @@ public class App {
         }
     }
 
+    /**
+     * Helper method to read the student details from the user
+     */
     public void getStudent() {
-        System.out.printf("%n[INFO] LOGIN%n%n");
-        String studentName = this.readLine("%n[QUES] Enter student name: ");
+        System.out.printf("%n[INFO] PLEASE ENTER YOUR DETAILS%n%n");
+        String studentName = this.readLine("%n[QUES] Student name: ");
         int studentId;
 
         while (true) {
             try {
-                studentId = Integer.parseInt(this.readLine("%n[QUES] Enter student ID number: "));
+                studentId = Integer.parseInt(this.readLine("%n[QUES] Student ID number: "));
                 break;
             }
 
@@ -89,6 +92,21 @@ public class App {
                     case 1: {
                         App.clearConsole();
                         System.out.printf("%n[INFO] SEARCH THE COURSE CATALOG%n%n");
+
+                        String courseName = this
+                                .readLine("%n[QUES] Enter the course name that you want to search: ")
+                                .toUpperCase();
+
+                        String output = cat.searchCatalog(courseName);
+
+                        if(output == null) {
+                            System.out.printf("%n[DONE] Sorry no courses found");
+                        }
+
+                        else {
+                            System.out.printf("%n[DONE] Search results -%n%n%s", output);
+                        }
+
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;
@@ -112,12 +130,12 @@ public class App {
                             }
 
                             catch (NumberFormatException e) {
-                                System.err.printf("%n[FAIL] Please enter a valid section number%n");
+                                System.err.printf("%n%n[FAIL] Please enter a valid section number%n");
                             }
                         }
 
                         if (this.stu.registerForCourse(this.cat, courseName, courseNumber, sectionNumber) == false) {
-                            System.out.printf("%n[FAIL] Sorry could not register for the course");
+                            System.out.printf("%n%n[FAIL] Sorry could not register for the course");
                         }
 
                         this.readLine("%n%n%nPress enter to return to the menu ");
@@ -135,7 +153,7 @@ public class App {
                                 .readLine("%n[QUES] Enter the course number from which you want to de-register: ");
 
                         if (this.stu.deRegisterFromCourse(this.cat, courseName, courseNumber) == false) {
-                            System.out.printf("%n[FAIL] Sorry could not de-register from the course");
+                            System.out.printf("%n%n[FAIL] Sorry could not de-register from the course");
                         }
 
                         this.readLine("%n%n%nPress enter to return to the menu ");
@@ -153,7 +171,17 @@ public class App {
                     case 5: {
                         App.clearConsole();
                         System.out.printf("%n[INFO] ALL REGISTERED COURSES BY STUDENT%n%n");
-                        System.out.println(stu.printRegisteredCourses());
+
+                        String output = stu.printRegisteredCourses();
+
+                        if(output == null) {
+                            System.out.printf("%n[DONE] You are not registered in any course");
+                        }
+
+                        else {
+                            System.out.printf("%n%s", output);
+                        }
+
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
                         break;

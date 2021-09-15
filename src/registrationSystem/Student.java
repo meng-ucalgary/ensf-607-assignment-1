@@ -168,13 +168,22 @@ public class Student {
     }
 
     public String printRegisteredCourses() {
+        boolean foundOne = false;
+
         StringBuilder sb = new StringBuilder();
 
         for (Registration r : this.courseList) {
             sb.append(String.format("Course: %s, Section: %s%n", r.getTheOffering().getTheCourse(),
                     r.getTheOffering().getSectionNumber()));
+            foundOne = true;
         }
 
-        return sb.toString();
+        if(foundOne) {
+            return sb.toString();
+        }
+
+        else {
+            return null;
+        }
     }
 }

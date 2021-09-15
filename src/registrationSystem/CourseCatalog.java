@@ -9,8 +9,16 @@ import java.io.IOException;
 public class CourseCatalog {
     private ArrayList<Course> courseList;
 
+    public ArrayList<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(ArrayList<Course> courseList) {
+        this.courseList = courseList;
+    }
+
     public CourseCatalog() {
-        this.courseList = CourseCatalog.loadFromFile();
+        this.setCourseList(CourseCatalog.loadFromFile());
     }
 
     /**
@@ -23,7 +31,7 @@ public class CourseCatalog {
         ArrayList<Course> allCourses = new ArrayList<>();
 
         try {
-            BufferedReader catalogFile = new BufferedReader(new FileReader("course_catalog.txt"));
+            BufferedReader catalogFile = new BufferedReader(new FileReader("lib/course_catalog.txt"));
             BufferedReader offeringFile;
 
             String catalogStr = "";
@@ -48,7 +56,7 @@ public class CourseCatalog {
                 ArrayList<Offering> offeringList = new ArrayList<>();
 
                 // add the course offerings to the course offerings list
-                offeringFile = new BufferedReader(new FileReader("course_offerings.txt"));
+                offeringFile = new BufferedReader(new FileReader("lib/course_offerings.txt"));
 
                 while ((offeringStr = offeringFile.readLine()) != null) {
                     String[] offering = offeringStr.split(",");
@@ -109,6 +117,27 @@ public class CourseCatalog {
         }
 
         return null;
+    }
+
+    public String searchCatalog(String courseName) {
+        boolean foundOne = false;
+
+        StringBuilder sb = new StringBuilder();
+
+        for(Course c : this.courseList) {
+            if(c.getCourseName().equals(courseName)) {
+                sb.append(String.format("%s%n", c.toStringDetailed()));
+                foundOne = true;
+            }
+        }
+
+        if(foundOne) {
+            return sb.toString();
+        }
+
+        else {
+            return null;
+        }
     }
 
     @Override

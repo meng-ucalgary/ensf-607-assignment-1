@@ -14,6 +14,8 @@ public class Course {
     public Course(String courseName, String courseNumber) {
         this.setCourseName(courseName);
         this.setCourseNumber(courseNumber);
+        preReq = new ArrayList<Course>();
+        offeringList = new ArrayList<Offering>();
     }
 
     public String getCourseName() {
@@ -48,6 +50,10 @@ public class Course {
         this.offeringList = offeringList;
     }
 
+    public void addOffering(Offering theOffering) {
+        offeringList.add(theOffering);
+    }
+
     @Override
     public String toString() {
         return String.format("%s-%s", this.getCourseName(), this.getCourseNumber());
@@ -66,8 +72,8 @@ public class Course {
     }
 
     public Offering searchOffering(int sectionNumber) {
-        for(Offering o : this.getOfferingList()) {
-            if(o.getSectionNumber() == sectionNumber) {
+        for (Offering o : this.getOfferingList()) {
+            if (o.getSectionNumber() == sectionNumber) {
                 return o;
             }
         }
@@ -76,9 +82,11 @@ public class Course {
     }
 
     /**
-     * Returns a String containing course name-number, its pre-requisites, and its offerings
+     * Returns a String containing course name-number, its pre-requisites, and its
+     * offerings
      *
-     * @return String containing course name-number, its pre-requisites, and its offerings
+     * @return String containing course name-number, its pre-requisites, and its
+     *         offerings
      */
     public String toStringDetailed() {
         StringBuilder sb = new StringBuilder();
