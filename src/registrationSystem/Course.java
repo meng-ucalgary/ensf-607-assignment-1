@@ -113,8 +113,8 @@ public class Course {
             sb.append(String.format("%n          Offerings:%n"));
 
             for (Offering offering : offeringList) {
-                sb.append(String.format("            Section: %d, Capacity: %d%n", offering.getSectionNumber(),
-                        offering.getSectionCapacity()));
+                sb.append(String.format("            Section: %d, Capacity: %d/%d%n", offering.getSectionNumber(),
+                        offering.occupancy(), offering.getSectionCapacity()));
             }
         }
 

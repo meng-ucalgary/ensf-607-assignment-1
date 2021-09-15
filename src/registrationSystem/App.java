@@ -3,6 +3,7 @@ package registrationSystem;
 import org.fusesource.jansi.AnsiConsole;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 
 /**
@@ -17,6 +18,8 @@ public class App {
         AnsiConsole.systemInstall();
         this.br = new BufferedReader(new InputStreamReader(System.in));
         this.cat = new CourseCatalog();
+        this.loadDummyStudents();
+        App.clearConsole();
     }
 
     /**
@@ -67,9 +70,39 @@ public class App {
     }
 
     /**
+     * Load dummy students
+     */
+    private void loadDummyStudents() {
+        try {
+            BufferedReader dummyStudentFile = new BufferedReader(new FileReader("lib/dummy_students.txt"));
+            String readStudent = "";
+
+            while ((readStudent = dummyStudentFile.readLine()) != null) {
+                String[] studentData = readStudent.split(",");
+
+                Student student = new Student(studentData[0].trim(), Integer.parseInt(studentData[1].trim()));
+
+                for(int i=2; i<studentData.length; i++) {
+                    String courseName = studentData[i].trim().split("-")[0];
+                    String courseNumber = studentData[i].trim().split("-")[1];
+                    int sectionNumber = Integer.parseInt(studentData[i].trim().split("-")[2]);
+
+                    student.registerForCourse(this.cat, courseName, courseNumber, sectionNumber);
+                }
+            }
+
+            dummyStudentFile.close();
+        }
+
+        catch (IOException e) {
+            // dont print error. Siliently proceed without dummy students;
+        }
+    }
+
+    /**
      * Console based menu
      */
-    public void appMenu() {
+    private void appMenu() {
         // priming input ch
         int choice = 9;
 
@@ -93,13 +126,12 @@ public class App {
                         App.clearConsole();
                         System.out.printf("%n[INFO] SEARCH THE COURSE CATALOG%n%n");
 
-                        String courseName = this
-                                .readLine("%n[QUES] Enter the course name that you want to search: ")
+                        String courseName = this.readLine("%n[QUES] Enter the course name that you want to search: ")
                                 .toUpperCase();
 
                         String output = cat.searchCatalog(courseName);
 
-                        if(output == null) {
+                        if (output == null) {
                             System.out.printf("%n[DONE] Sorry no courses found");
                         }
 
@@ -174,7 +206,7 @@ public class App {
 
                         String output = stu.printRegisteredCourses();
 
-                        if(output == null) {
+                        if (output == null) {
                             System.out.printf("%n[DONE] You are not registered in any course");
                         }
 

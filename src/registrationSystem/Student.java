@@ -107,7 +107,7 @@ public class Student {
 
                 if (flag == true) {
                     /* Registration reg = */new Registration(this, theOffering);
-                    System.out.printf("%n[DONE] Successfully registered for the course %s in section %d.", myCourse,
+                    System.out.printf("%n%n[DONE] Successfully registered for the course %s in section %d.", myCourse,
                             theOffering.getSectionNumber());
 
                     if (!theOffering.offeringConfirmed()) {
@@ -190,7 +190,7 @@ public class Student {
 
             if (!r.getTheOffering().offeringConfirmed()) {
                 sb.append(String.format(
-                        "    (offering not confirmed as total regisrations is less than minimum required)%n%n"));
+                        "    (offering not confirmed as total registrations is less than minimum required)%n%n"));
             }
 
             else {

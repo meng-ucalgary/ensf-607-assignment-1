@@ -63,4 +63,11 @@ public class Offering {
 
         return false;
     }
+
+    /**
+     * Prints the current occupancy of the offering
+     */
+    public int occupancy() {
+        return this.studentList.size();
+    }
 }
