@@ -45,4 +45,22 @@ public class Offering {
     public void removeRegistration(Registration reg) {
         this.studentList.remove(reg);
     }
+
+    public boolean isFull() {
+        return (this.studentList.size() == this.getSectionCapacity());
+    }
+
+    /**
+     * Determines if the courses has more than eight registrations
+     *
+     * @return {@code true} if course has more than eight registrations,
+     *         {@code false} otherwise
+     */
+    public boolean offeringConfirmed() {
+        if(this.studentList.size() > 7) {
+            return true;
+        }
+
+        return false;
+    }
 }

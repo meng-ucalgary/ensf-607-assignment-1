@@ -62,6 +62,12 @@ public class Student {
                 return false;
             }
 
+            // checking the available space in the offering
+            else if (theOffering.isFull()) {
+                System.err.printf("%n[FAIL] No space available in this course offering.");
+                return false;
+            }
+
             else {
                 // check if course is already registered
                 for (Registration registeredCourses : this.courseList) {
@@ -103,6 +109,11 @@ public class Student {
                     /* Registration reg = */new Registration(this, theOffering);
                     System.out.printf("%n[DONE] Successfully registered for the course %s in section %d.", myCourse,
                             theOffering.getSectionNumber());
+
+                    if (!theOffering.offeringConfirmed()) {
+                        System.out.printf(
+                                "%n%n[INFO] Please note that this offering may be withdrawn if registrations remain below threshold.");
+                    }
                 }
             }
         }
@@ -171,14 +182,25 @@ public class Student {
         boolean foundOne = false;
 
         StringBuilder sb = new StringBuilder();
+        int i = 0;
 
         for (Registration r : this.courseList) {
-            sb.append(String.format("Course: %s, Section: %s%n", r.getTheOffering().getTheCourse(),
+            sb.append(String.format("%d. Course: %s, Section: %s", ++i, r.getTheOffering().getTheCourse(),
                     r.getTheOffering().getSectionNumber()));
+
+            if (!r.getTheOffering().offeringConfirmed()) {
+                sb.append(String.format(
+                        "    (offering not confirmed as total regisrations is less than minimum required)%n%n"));
+            }
+
+            else {
+                sb.append(String.format("    (offering confirmed)%n%n"));
+            }
+
             foundOne = true;
         }
 
-        if(foundOne) {
+        if (foundOne) {
             return sb.toString();
         }
 
