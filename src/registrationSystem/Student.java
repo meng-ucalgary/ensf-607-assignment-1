@@ -154,7 +154,7 @@ public class Student {
                 if (myCourse.equals(c)) {
                     System.err.printf(
                             "%n[FAIL] This course is listed as a pre-requisite for some of the registered courses.");
-                    System.err.printf("%n[FAIL] Please de-register from them before de-registering for this course.");
+                    System.err.printf("%n%n[FAIL] Please de-register from them before de-registering from this course.");
 
                     return false;
                 }
