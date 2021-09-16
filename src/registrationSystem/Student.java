@@ -112,7 +112,7 @@ public class Student {
 
                     if (!theOffering.offeringConfirmed()) {
                         System.out.printf(
-                                "%n%n[INFO] Please note that this offering may be withdrawn if registrations remain below threshold.");
+                                "%n%n[WARN] Please note that this offering may be withdrawn if registrations remain below threshold.");
                     }
                 }
             }
