@@ -124,7 +124,7 @@ public class App {
 
                     case 1: {
                         App.clearConsole();
-                        System.out.printf("%n[INFO] SEARCH THE COURSE CATALOG%n%n");
+                        System.out.printf("%n[OP 1] SEARCH THE COURSE CATALOG%n%n");
 
                         String courseName = this.readLine("%n[QUES] Enter the course name that you want to search: ")
                                 .toUpperCase();
@@ -145,7 +145,7 @@ public class App {
 
                     case 2: {
                         App.clearConsole();
-                        System.out.printf("%n[INFO] REGISTER FOR A COURSE%n%n");
+                        System.out.printf("%n[OP 2] REGISTER FOR A COURSE%n%n");
 
                         String courseName = this
                                 .readLine("%n[QUES] Enter the course name for which you want to register: ")
@@ -176,7 +176,7 @@ public class App {
 
                     case 3: {
                         App.clearConsole();
-                        System.out.printf("%n[INFO] DE-REGISTER FROM A COURSE%n%n");
+                        System.out.printf("%n[OP 3] DE-REGISTER FROM A COURSE%n%n");
 
                         String courseName = this
                                 .readLine("%n[QUES] Enter the course name from which you want to de-register: ")
@@ -194,7 +194,7 @@ public class App {
 
                     case 4: {
                         App.clearConsole();
-                        System.out.printf("%nALL COURSES IN THE CATALOG%n%n");
+                        System.out.printf("%n[OP 4] ALL COURSES IN THE CATALOG%n%n");
                         cat.listCourses();
                         this.readLine("%n%n%nPress enter to return to the menu ");
                     }
@@ -202,7 +202,7 @@ public class App {
 
                     case 5: {
                         App.clearConsole();
-                        System.out.printf("%n[INFO] ALL REGISTERED COURSES BY STUDENT%n%n");
+                        System.out.printf("%n[OP 5] ALL REGISTERED COURSES BY STUDENT%n%n");
 
                         String output = stu.printRegisteredCourses();
 
