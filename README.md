@@ -1,78 +1,59 @@
-# Course Registration System
+# ENSF-607 Assignment 1
 
-## About
+An assignment on developing a command line Course Registration System.
 
-A course registration system based on the specifications laid in [Assignment_1.pdf](Assignment_1.pdf)
+## Folder Structure
 
+- [Assignment_1.pdf](Assignment_1.pdf): assignment document
+- [src](src): source code
+- [lib](lib): setup data and jar of library used
+- [screenshots](screenshots): screenshots of the program
+- [Run.sh](Run.sh): executable for unix based OS
+- [Run.cmd](Run.cmd): executable for Windows
 
-## Dependencies
+## Program design and flow
 
-+ JDK 1.7 or above configured
+- As soon as the program is launched, it reads the [resource files](#details-of-resource-files) to create course catalog, and registers all the dummy students
 
+- You as a student would enter your details to enter the system
 
-## Program design and flow 
+- Before registering a course (program menu option number 2), the pre-requisites of the course are checked. You must be registered for the pre-requisite courses to register for any course.
 
-+ As soon as the program is launched, it reads the [resource files](#details-of-resource-files) to create course catalog, and registers all the dummy students
+- After registration, a warning is showed only if there are less than 8 students registered in the selected offering
 
-+ You as a student would enter your details to enter the system
+- All the course details, offering details, and occupancy details can be printed using program menu option number 4.
 
-+ Before registering a course (program menu option number 2), the pre-requisites of the course are checked. You must be registered for the pre-requisite courses to register for any course.
-
-+ After registration, a warning is showed only if there are less than 8 students registered in the selected offering
-
-+ All the course details, offering details, and occupancy details can be printed using program menu option number 4.
-
-+ Refer to the [screenshots](#screenshots) to get an idea of the working of the program
-
+- Refer to the [screenshots](#screenshots) to get an idea of the working of the program
 
 ## Details of resource files
 
-+ Data required for Course Catalog is stored in [lib/course_catalog.txt](lib/course_catalog.txt)
+- Data required for Course Catalog is stored in [lib/course_catalog.txt](lib/course_catalog.txt). Format of data is:
 
-   + Each line in the file follows the below format
-     ```
-     <course name>, <comma separated list of pre-requisite courses>
-     ```
+  ```
+  <course name>, <comma separated list of pre-requisite courses>
+  ```
 
-+ Data required for Course Offering is stored in [lib/course_offerings.txt](lib/course_offerings.txt)
+- Data required for Course Offering is stored in [lib/course_offerings.txt](lib/course_offerings.txt). Format of data is:
 
-   + Each line in the file follows the below format
-     ```
-     <course name>, <offering section number>, <offering maximum capacity>
-     ```
+  ```
+  <course name>, <offering section number>, <offering maximum capacity>
+  ```
 
-+ Dummy students and their registration informations is stored in [lib/dummy_students.txt](lib/dummy_students.txt)
+- Dummy students and their registration informations is stored in [lib/dummy_students.txt](lib/dummy_students.txt). Format of data is:
 
-   + Each line in the file follows the below format
-   ```
-   <student name>, <student ID number>, <comma separated list of registered offering in the format <courseName-courseNumber-offeringSection>>
-   ```
+  ```
+  <student name>, <student ID number>, <comma separated list of registered offering in the format <courseName-courseNumber-offeringSection>>
+  ```
 
+## How to build and run
 
-## Running the program
+1. JDK version 1.7 or above is required to build and run this program.
 
-1. Extract the downloaded the zip archive or clone the project on your local machine
+2. Clone the repository on your machine, or download the zip file
 
-2. If using Windows OS
+3. Run the [Run.sh](Run.sh) or [Run.cmd](Run.cmd) file to run the program
 
-   1. Navigate to the directory where the project is extracted/cloned
-
-   2. Double click on the file `Run.cmd`
-
-   3. Follow the onscreen instructions
-
-3. If not using Windows OS
-   
-   1. Using the terminal, go to the directory where the project is extracted/cloned
-
-   2. Run the below commands
-      ```shell
-      chmod +x Run.sh
-      ./Run.sh
-      ```
-
-   3. Then follow the onscreen instructions
-
+4. Then follow the onscreen instructions
 
 ## Screenshots
 
